@@ -1,0 +1,41 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(10, 10, 10);
+    
+}
+
+header {
+    height: 10vh;
+    background-color: rgb(26, 25, 25);
+}
+
+.logo {
+    padding-top: 2vh;
+    margin-left: 2vw;
+    font-size: 34pt;
+}
+
+.logo a {
+    color: rgb(72, 72, 72);
+    text-decoration: none;
+}
+
+.label {
+    width: 20vw;
+    height: 12vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35vh;
+    text-align: center;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+    color: #fff; 
+    padding-top: 6vh;
+    background-color: rgb(72, 72, 72);
+    border-radius: 5px;
+}
