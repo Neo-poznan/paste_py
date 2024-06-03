@@ -21,20 +21,17 @@ class NewPostView(View):
         form_data = json.loads(body_unicode)
 
         # тут будет функционал для запроса к микросервису для получения ключа
-        key = 'mKOrf35OigM-e' # пока буду просто вписывать сюда тестовые ключи
+        key = '34ghjLO9-hkDFn' # пока буду просто вписывать сюда тестовые ключи
 
         text = form_data['text']
         date = form_data['del_date']
-        #$file_url = upload_file_to_s3(text, key)
-        #PostUrls.objects.create(key=key, file_url=file_url, del_date=date)
+        
+        file_url = upload_file_to_s3(text, key)
+        PostUrls.objects.create(key=key, file_url=file_url, del_date=date)
         current_site = Site.objects.get_current()
         
-        url = f'https://{current_site.domain}/{key}'
-
+        url = f'https://{current_site.domain}/p/{key}'
 
         return JsonResponse({'link': url})
     
-
-def success_view(request, url):
-    return render(request, 'savepost/success.html', context={'url': url})
     

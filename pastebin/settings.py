@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
+SECRET_KEY = 'django-insecure-#q&-dwmkud)lzzxp)8w!f^%61!r3x6b72usoer7)tva1601r8@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -131,9 +131,9 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # настройки для s3 хранилища
-AWS_ACCESE_KEY_ID = ''
+AWS_ACCESE_KEY_ID = 'YCAJEhurZSpeWgpn49C3TJSpT'
 
-AWS_SECRET_ACCESS_KEY = ''
+AWS_SECRET_ACCESS_KEY = 'YCMMiCo4xCytlZAY0Y8XcjsAnCIRL5THNBPaXeDd'
 
 ENDPOINT_URL = 'https://storage.yandexcloud.net'
 

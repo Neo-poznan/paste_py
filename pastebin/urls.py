@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from savepost import views
+from getpost import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('savepost.urls', namespace='savepost')),
+    path('p/<str:post_key>/', views.get_text_view, name='getpost'),
 ]

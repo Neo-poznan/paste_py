@@ -1,14 +1,28 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render
+from django.contrib.sessions.models import Session
 
 
-def get_post_url(request, key):
+from getpost.yandex_s3 import download_file_from_s3
+from savepost.models import PostUrls
 
 
-    request.META['post_url'] = 0 # тут данные из бд
-    return redirect(request, reverse_lazy('ссылка на получение поста'))
+def get_text_view(request, post_key):
+    # если поста нет в БД
+    try:
+        post = PostUrls.objects.get(key=post_key)
+    except PostUrls.DoesNotExist:
+        return render(request, 'getpost/post.html',
+            context={'post_text': 'Поста, который вы ищите не существует или он был удален'})
 
-def get_text(request):
-    pass
-
+    session = request.session
+    # если данный пользователь еще не просматривал данный пост, то увеличиваем счетчик просмотров
+    if session:
+        if post_key not in request.session:
+            request.session[post_key] = True 
+            post.views += 1
+            post.save()
+    
+    post_text = download_file_from_s3(post.file_url)
+    return render(request, 'getpost/post.html', context={'post_text': post_text, 'views': post.views})
+    
 

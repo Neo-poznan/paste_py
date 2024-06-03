@@ -17,6 +17,18 @@ function closeMessageBox() {
     messageBox.style.display = 'none';
 }
 
+var textarea = document.querySelector('textarea');
+
+function autoResize() {
+  textarea.style.height = '59vh';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+if (textarea.attachEvent) {
+  textarea.attachEvent('oninput', autoResize); // Для устаревших версий браузеров
+} else {
+  textarea.addEventListener('input', autoResize);
+}
 
 // функция получение csrf токена
 function getCookie(name) {
