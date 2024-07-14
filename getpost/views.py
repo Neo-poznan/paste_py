@@ -16,11 +16,10 @@ def get_text_view(request, post_key):
 
     session = request.session
     # если данный пользователь еще не просматривал данный пост, то увеличиваем счетчик просмотров
-    if session:
-        if post_key not in request.session:
-            request.session[post_key] = True 
-            post.views += 1
-            post.save()
+    if not post_key in request.session:
+        request.session[post_key] = True 
+        post.views += 1
+        post.save()
     
     post_text = download_file_from_s3(post.file_url)
     return render(request, 'getpost/post.html', context={'post_text': post_text, 'views': post.views})

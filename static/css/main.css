@@ -35,6 +35,7 @@ header {
 }
 
 .message-box {
+    width: 45vw;
     margin-left: auto;
     margin-right: auto;
     display: table;

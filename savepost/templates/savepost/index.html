@@ -33,6 +33,7 @@
         </div>
 
         <form name="textform">
+            <script>let csrfCookie = '{{ csrf_token }}'</script>
             <div class="date-input-container">
                 <p>Пост будет удален через 6 дней! Изменить:</p>
                 <input type='date' id="datePicker" name="del_date">
