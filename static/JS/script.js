@@ -6,7 +6,7 @@ const default_date = new Date();
 const maxDate = new Date(tomorrow);
 
 tomorrow.setDate(tomorrow.getDate() + 1); // Завтрашний день
-maxDate.setDate(maxDate.getDate() + 19); // 14 дней после завтрашнего дня
+maxDate.setDate(maxDate.getDate() + 14); // 14 дней после завтрашнего дня
 default_date.setDate(default_date.getDate() + 6)
 
 // установим минимум и максимум для поля ввода даты
