@@ -16,7 +16,6 @@ async def download_file_from_s3(url: str) -> str:
     получаем объект из стореджа в виде байтов и декодируем
     '''     
     bucket_key = url.split('/')[-1]
-    print(bucket_key)
     bucket, key = bucket_key.split('?key=')
     try:
         session = aioboto3.Session()

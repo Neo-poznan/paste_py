@@ -23,3 +23,7 @@ Traceback (most recent call last):
     return render(request, 'getpost/post.html', context={'post_text': post_content, 'views': post.views})
                                                                                              ^^^^
 NameError: name 'post' is not defined
+[2024-09-24 07:44:59.814706] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
+[2024-09-24 07:45:13.354432] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
+[2024-09-24 07:47:24.203894] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
+[2024-09-24 07:47:24.341187] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.

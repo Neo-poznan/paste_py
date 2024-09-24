@@ -158,9 +158,22 @@ ENDPOINT_URL = 'https://storage.yandexcloud.net'
 
 CLIENT_FILES_BUCKET = 'paste-py-clientstorage'
 
+SITE_ID=1   
+
+# настройки для redis
 REDIS_HOST = '127.0.0.1'
 
 REDIS_PORT = '6379'
 
-SITE_ID=1   
+# настройки кэширования постов
+# сколько наиболее просмотренных постов хранить в кэше
+MOST_VIEWED_POSTS_LIMIT =  100
+# сколько секунд хранить в кэше недавно просмотренные посты
+CACHE_TIME = 1800
+# сколько секунд хранить в кэше самые активные посты
+MOST_VIEWED_POSTS_CACHE_TIME = 3600
+# сколько часов назад считать пост недавно просмотренным
+TIME_TO_CHECK_POST_VIEWS = 4
+
+
 
