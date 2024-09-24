@@ -1,4 +1,4 @@
-import boto3
+import aioboto3
 import logging
 from datetime import datetime
 
@@ -6,33 +6,27 @@ from pastebin.settings import AWS_ACCESS_KEY_ID,  AWS_SECRET_ACCESS_KEY, ENDPOIN
 
 logger = logging.getLogger('django.request')
 
-s3 = boto3.client(
-    service_name='s3',
-    aws_access_key_id = AWS_ACCESS_KEY_ID,
-    aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-    endpoint_url = ENDPOINT_URL,
-)
-
-def upload_file_to_s3(text, key):
+async def upload_file_to_s3(content:str, key: str) -> str:
+    '''
+    Удалим лишние пробелы, табуляции и переносы строк и заменим их
+    на один перенос строки. Запишем в облако и вернем ссылку
+    '''
     key += '.txt'
-    file = ''
-    # удалим лишние пробелы
-    text = text.strip()
-    # уберем из текста все лишние переносы строки, т.к. textarea зачем-то ставит их в начало и конец каждой строки
-    for line in text.split('\n'): 
-        file += line.strip() + '\n'   
+    content_without_unnecessary_line_breaks = ''
+    content = content.strip()
+    for line in content.split('\n'): 
+        content_without_unnecessary_line_breaks += line.strip() + '\n'   
     try:
-        # загрузим файл в облако
-        s3.put_object(Bucket=CLIENT_FILES_BUCKET, Key=key, Body=file)
+        session = aioboto3.Session()
+        async with session.client(
+            's3', endpoint_url=ENDPOINT_URL,
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+        ) as s3:
+            await s3.put_object(Bucket=CLIENT_FILES_BUCKET, Key=key, Body=content_without_unnecessary_line_breaks)
         # сделаем ссылку на него, тут должна быть ссылка именно на твое облако
         file_url = f"https://console.yandex.cloud/folders/b1ghi85fci38pckmj0ns/storage/buckets/{CLIENT_FILES_BUCKET}?key={key}"
     except Exception as e:
         logger.error(f'[{datetime.now()}] Ошибка запроса к хранилищу при записи файла в облако: {e}')
     return file_url
-
-
-
-    
-    
-
-    
+        

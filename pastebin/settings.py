@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -158,5 +158,9 @@ ENDPOINT_URL = 'https://storage.yandexcloud.net'
 
 CLIENT_FILES_BUCKET = 'paste-py-clientstorage'
 
-SITE_ID=1 
+REDIS_HOST = '127.0.0.1'
+
+REDIS_PORT = '6379'
+
+SITE_ID=1   
 

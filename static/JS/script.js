@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resultText.style.display = 'block';
             resultText.textContent = 'Ошибка загрузки, попробуйте ещё раз.';
             console.error('Ошибка:', error);
+            submitBtn.style.display = 'block';
         });
     });
 });

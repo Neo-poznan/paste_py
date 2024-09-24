@@ -1,19 +1,25 @@
-[2024-08-03 15:21:43.934724] Ошибка при запросе к микросервису для генерации ключа! HTTPConnectionPool(host='127.0.0.1', port=8001): Max retries exceeded with url: /generate (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f522ea08050>: Failed to establish a new connection: [Errno 111] Connection refused'))
-Internal Server Error: /
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Internal Server Error: /p/sX720Zx6Wx7oO/
 Traceback (most recent call last):
-  File "/mnt/c/Users/ilapr/OneDrive/Рабочий стол/webapps/pastebin-on-python/linuxVenv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
     response = get_response(request)
                ^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/c/Users/ilapr/OneDrive/Рабочий стол/webapps/pastebin-on-python/linuxVenv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
     response = wrapped_callback(request, *callback_args, **callback_kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/c/Users/ilapr/OneDrive/Рабочий стол/webapps/pastebin-on-python/linuxVenv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
-    return self.dispatch(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/c/Users/ilapr/OneDrive/Рабочий стол/webapps/pastebin-on-python/linuxVenv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
-    return handler(request, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/c/Users/ilapr/OneDrive/Рабочий стол/webapps/pastebin-on-python/pastebin/savepost/views.py", line 34, in post
-    key = response['hash']
-          ^^^^^^^^
-UnboundLocalError: cannot access local variable 'response' where it is not associated with a value
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/getpost/views.py", line 35, in get_text_view
+    return render(request, 'getpost/post.html', context={'post_text': post_content, 'views': post.views})
+                                                                                             ^^^^
+NameError: name 'post' is not defined
