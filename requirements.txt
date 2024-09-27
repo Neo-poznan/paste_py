@@ -60,3 +60,5 @@ yarg==0.1.9
 redis
 httpx
 aioboto3
+asyncpg
+django-async-orm

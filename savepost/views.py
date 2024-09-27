@@ -7,8 +7,10 @@ from django.views.generic import View
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from savepost.models import PostUrls
+from savepost.models import Posts
 from savepost.yandex_s3 import upload_file_to_s3
+from savepost.validators import date_validator
+
 logger = logging.getLogger('django.request')
 
 
@@ -36,12 +38,15 @@ class NewPostView(View):
                 response_json = response.json()
         except httpx.HTTPError as e:
             logger.error(f'[{datetime.now()}] Ошибка при запросе к микросервису для генерации ключа! {e}')
+
         post_key = response_json['hash']       
         post_content = form_data['text']
         del_date = form_data['del_date']
 
-        file_url = await upload_file_to_s3(post_content, post_key)
-        await PostUrls.objects.acreate(key=post_key, file_url=file_url, del_date=del_date)
+        print(del_date)
+        await date_validator(del_date)
+        await upload_file_to_s3(post_content, post_key)
+        await Posts.objects.acreate(key=post_key, del_date=del_date)
         # формируем ссылку на пост
         url = f'http://127.0.0.1:8000/p/{post_key}'
 

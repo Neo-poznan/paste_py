@@ -6,7 +6,7 @@ from pastebin.settings import AWS_ACCESS_KEY_ID,  AWS_SECRET_ACCESS_KEY, ENDPOIN
 
 logger = logging.getLogger('django.request')
 
-async def upload_file_to_s3(content:str, key: str) -> str:
+async def upload_file_to_s3(content:str, key: str) -> None:
     '''
     Удалим лишние пробелы, табуляции и переносы строк и заменим их
     на один перенос строки. Запишем в облако и вернем ссылку
@@ -24,9 +24,6 @@ async def upload_file_to_s3(content:str, key: str) -> str:
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY
         ) as s3:
             await s3.put_object(Bucket=CLIENT_FILES_BUCKET, Key=key, Body=content_without_unnecessary_line_breaks)
-        # сделаем ссылку на него, тут должна быть ссылка именно на твое облако
-        file_url = f"https://console.yandex.cloud/folders/b1ghi85fci38pckmj0ns/storage/buckets/{CLIENT_FILES_BUCKET}?key={key}"
     except Exception as e:
         logger.error(f'[{datetime.now()}] Ошибка запроса к хранилищу при записи файла в облако: {e}')
-    return file_url
         

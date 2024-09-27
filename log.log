@@ -27,3 +27,106 @@ NameError: name 'post' is not defined
 [2024-09-24 07:45:13.354432] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
 [2024-09-24 07:47:24.203894] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
 [2024-09-24 07:47:24.341187] Ошибка загрузки контента из S3! An error occurred (InternalError) when calling the GetObject operation (reached max retries: 4): We encountered an internal error, please try again.
+Not Found: /favicon.ico
+[2024-09-27 01:13:32.365040] Ошибка при запросе к микросервису для генерации ключа! All connection attempts failed
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/views.py", line 40, in post
+    post_key = response_json['hash']
+        ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'response_json' where it is not associated with a value
+[2024-09-27 01:15:02.785604] Ошибка запроса к хранилищу при записи файла в облако: An error occurred (RequestTimeTooSkewed) when calling the PutObject operation: The difference between the request time and the current time is too large.
+[2024-09-27 01:15:11.109665] Ошибка загрузки контента из S3! An error occurred (RequestTimeTooSkewed) when calling the GetObject operation: The difference between the request time and the current time is too large.
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/views.py", line 46, in post
+    await date_validator(del_date)
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/validators.py", line 8, in date_validator
+    date_with_time =datetime.strptime(input_date)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: strptime() takes exactly 2 arguments (1 given)
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/views.py", line 47, in post
+    await date_validator(del_date)
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/validators.py", line 7, in date_validator
+    date_with_time =datetime.strptime(input_date)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: strptime() takes exactly 2 arguments (1 given)
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 254, in __call__
+    return call_result.result()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/bin/Python3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/ilya/code/webapps/pastebin-on-python/env/lib/python3.12/site-packages/asgiref/sync.py", line 331, in main_wrap
+    result = await self.awaitable(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/views.py", line 47, in post
+    await date_validator(del_date)
+  File "/home/ilya/code/webapps/pastebin-on-python/pastebin/savepost/validators.py", line 9, in date_validator
+    max_date = today + datetime.timedelta(days=14)
+                       ^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'timedelta'
+Not Found: /favicon.ico

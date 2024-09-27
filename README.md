@@ -24,3 +24,5 @@
 7. `python3.12 manage.py migrate`
 8. `python3.12 manage.py runserver`
 9. Развернуть генератор ссылок на порту 8001
+10. Чтобы удалить устаревшие посты `python3.12 manage.py del_outdated_posts`
+11. Чтобы кэшировать наиболее просматриваемые посты `python3.12 manage.py cache_most_viewed_posts`
