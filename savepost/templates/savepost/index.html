@@ -35,11 +35,28 @@
         <form name="textform">
             <script>let csrfCookie = '{{ csrf_token }}'</script>
             <div class="date-input-container">
-                <p>Пост будет удален через 6 дней! Изменить:</p>
+                <p>Пост будет удален через 30 дней! Изменить:</p>
                 <input type='date' id="datePicker" name="del_date">
             </div>
+            <div class="code-button-container">
+                <div class="code-button">
+                    Python interpreter
+                    <i class="ri-code-s-slash-line"></i>
+                </div>
+                <div class="code-run-button">
+                    Run 
+                    <i class="ri-code-box-line"></i>
+                </div>
+            </div>
             <textarea name="text" id="text-input"required minlength="60" placeholder="Text..."></textarea>
-
+            <div class="terminal-container">  
+            <div class="terminal-icon">Терминал<i class="ri-code-box-line"></i></div>  
+            <div class="terminal">
+                
+                
+            
+            </div>
+            </div>
             <br>
             <div class="btn-container">
             <button type="submit" class="submit-button" id="submitBtn">Готово</button>
@@ -55,6 +72,7 @@
         </form>
     </div>
 <script src="{% static 'JS/script.js' %}"></script>
+<script src="{% static 'JS/online_interpreter.js' %}"></script>
     
 </body>
 </html>

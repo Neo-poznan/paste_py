@@ -1,7 +1,8 @@
 # Проект paste.py 
-
-
 Клон pastebin предназначен для создания текстовых постов. 
+![alt text](textexample.png)
+А еще тут есть онлайн интерпретатор python кода
+![alt text](codeexample.png)
 
 ## Как работает
 ![alt text](projectscheme.png)

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +40,7 @@ LOGGING = {
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = os.getenv('DJANGO_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -150,15 +151,15 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # настройки для s3 хранилища
-AWS_ACCESS_KEY_ID = ''
+AWS_ACCESS_KEY_ID = os.getenv('YANDEX_KEY_ID')
 
-AWS_SECRET_ACCESS_KEY = ''
+AWS_SECRET_ACCESS_KEY = os.getenv('YANDEX_KEY')
 
 ENDPOINT_URL = 'https://storage.yandexcloud.net'
 
 CLIENT_FILES_BUCKET = 'paste-py-clientstorage'
 
-SITE_ID=1   
+SITE_ID=1
 
 # настройки для redis
 REDIS_HOST = '127.0.0.1'

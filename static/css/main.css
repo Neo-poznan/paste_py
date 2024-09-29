@@ -172,3 +172,72 @@ header {
 #resultLink {
     color: #fff;
 }
+
+.code-button-container {
+    display: flex;
+    justify-content: right;
+}
+
+.code-button {
+    background-color: rgb(206, 119, 33);
+    font-size: 16pt;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 3vh;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.code-button:hover {
+    background-color: rgb(153, 89, 25);
+}
+
+.code-run-button {
+    background-color: rgb(206, 119, 33);
+    font-size: 16pt;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 3vh;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 0.5vw;
+    display: none;
+    
+}
+
+.code-run-button:hover {
+    background-color: rgb(153, 89, 25);
+}
+
+.terminal-container {
+    margin-top: 2vh;
+}
+
+.terminal-icon {
+    color: #fff;
+    background-color: rgb(32, 32, 32);
+    border-radius: 7px 7px 0px 0px;
+    font-size: 16pt;
+    width: 6vw;
+    margin-left: 1vw;
+    padding: 3px;
+    display: none;
+}
+
+.terminal {
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border : 3px solid rgb(32, 32, 32);
+    background-color: rgb(10, 10, 10);
+    border-radius: 20px;
+    width: 50.5vw;
+    text-align: left;
+    padding: 10px;
+    white-space: pre-line;
+    display: none;
+
+}

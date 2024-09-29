@@ -6,8 +6,8 @@ const default_date = new Date();
 const maxDate = new Date(tomorrow);
 
 tomorrow.setDate(tomorrow.getDate() + 1); // Завтрашний день
-maxDate.setDate(maxDate.getDate() + 14); // 14 дней после завтрашнего дня
-default_date.setDate(default_date.getDate() + 6)
+maxDate.setDate(maxDate.getDate() + 60); // 14 дней после завтрашнего дня
+default_date.setDate(default_date.getDate() + 30)
 
 // установим минимум и максимум для поля ввода даты
 datePicker.min = tomorrow.toISOString().split('T')[0];

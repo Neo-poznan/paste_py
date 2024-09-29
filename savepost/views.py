@@ -1,8 +1,9 @@
 import json
-import httpx
+import subprocess
 import logging
 from datetime import datetime
 
+import httpx
 from django.views.generic import View
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -43,7 +44,7 @@ class NewPostView(View):
         post_content = form_data['text']
         del_date = form_data['del_date']
 
-        print(del_date)
+
         await date_validator(del_date)
         await upload_file_to_s3(post_content, post_key)
         await Posts.objects.acreate(key=post_key, del_date=del_date)
@@ -51,4 +52,31 @@ class NewPostView(View):
         url = f'http://127.0.0.1:8000/p/{post_key}'
 
         return JsonResponse({'link': url})
+    
+
+def execute_code(request):
+    '''
+    Представление для выполнения кода в браузере
+    '''
+    # получаем данные из формы
+    body_unicode = request.body.decode('utf-8')
+    form_data = json.loads(body_unicode) 
+    code = form_data['text']
+
+    # удаляем лишние переносы строк
+    code = code.strip()
+    code_without_unnecessary_line_breaks = ''
+    for line in code.split('\n'): 
+        code_without_unnecessary_line_breaks += line.strip() + '\n' 
+
+    # выполняем код
+    executor = subprocess.run(
+        ['python', '-c', code_without_unnecessary_line_breaks],
+        capture_output=True,
+        text=True
+    )
+    
+    return JsonResponse({'stdout': executor.stdout, 'stderr': executor.stderr})
+
+
 
