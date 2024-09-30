@@ -67,7 +67,7 @@ def execute_code(request):
     code = code.strip()
     code_without_unnecessary_line_breaks = ''
     for line in code.split('\n'): 
-        code_without_unnecessary_line_breaks += line.strip() + '\n' 
+        code_without_unnecessary_line_breaks += line.strip('\n') + '\n' 
 
     # выполняем код
     executor = subprocess.run(

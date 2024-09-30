@@ -15,7 +15,7 @@ async def upload_file_to_s3(content:str, key: str) -> None:
     content_without_unnecessary_line_breaks = ''
     content = content.strip()
     for line in content.split('\n'): 
-        content_without_unnecessary_line_breaks += line.strip() + '\n'   
+        content_without_unnecessary_line_breaks += line.strip('\n') + '\n'   
     try:
         session = aioboto3.Session()
         async with session.client(

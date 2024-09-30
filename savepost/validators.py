@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 async def date_validator(date_str: str) -> Never:
     date = datetime.strptime(date_str, '%Y-%m-%d').date()
     today = date.today()
-    max_date = today + timedelta(days=14)
+    max_date = today + timedelta(days=60)
     if date <= today:
         raise ValidationError('Дата удаления поста не может быть меньше сегодняшней даты')
     if date > max_date:

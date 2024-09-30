@@ -4,6 +4,7 @@ from .validators import date_validator
 
 
 class Posts(models.Model):
+    '''Таблица для хранения информации о постах'''
     key = models.CharField(max_length=14, primary_key=True)
     views = models.IntegerField(default=0)
     del_date = models.DateField(validators=[date_validator])
