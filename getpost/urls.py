@@ -6,8 +6,7 @@ from getpost import views
 app_name = 'getpost'
 
 
-url_patterns = [
-    path('<str:hash>/', views.get_post_url, name='get_url'),
-    path('get/', views.get_text, name='get_text')
+urlpatterns = [
+    path('<str:post_key>/', views.get_post_view, name='getpost'),
 ]
 

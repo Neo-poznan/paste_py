@@ -1,18 +1,13 @@
-import redis
-
 from django.shortcuts import render
 from asgiref.sync import sync_to_async
 
-from getpost.yandex_s3 import download_file_from_s3
+from getpost.services.post_content_service import get_and_cache_post_content
 from savepost.models import Posts
-from pastebin.settings import REDIS_HOST, REDIS_PORT
 
-async def get_text_view(request, post_key):
+
+async def get_post_view(request, post_key):
     '''Если поста нет, то выводится соответствующее сообщение,
-    если пост есть, то выводится текст поста взятый из кэша если он есть, 
-    иначе получаем его из s3 и кэшируем на 30 минут'''
-    redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
-    
+    если пост есть, то выводится текст поста и обновляется счетчик просмотров'''
     # если поста нет в БД
     try:
         post_db_row = await Posts.objects.aget(key=post_key)
@@ -26,12 +21,7 @@ async def get_text_view(request, post_key):
         post_db_row.views += 1
     # обновляем последнюю дату вызова
     await post_db_row.asave()
-    if redis_client.exists(post_key):
-        post_content = redis_client.get(post_key).decode('utf-8')
-    else:  
-        post_content = await download_file_from_s3(post_key)
-        # кэшируем пост
-        redis_client.set(post_key, post_content)
-        redis_client.expire(post_key, 1800)
+    # получаем текст поста
+    post_content = await get_and_cache_post_content(post_key)
     return render(request, 'getpost/post.html', context={'post_text': post_content, 'views': post_db_row.views})
     
