@@ -20,6 +20,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('savepost.urls', namespace='savepost')),
-    path('p/', include('getpost.urls', namespace='getpost')),
+    path('', include('post.urls', namespace='post')),
 ]

@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
-    'savepost',
-    'getpost',
+    'post',
+
 ]
 
 MIDDLEWARE = [
@@ -175,6 +175,8 @@ CACHE_TIME = 1800
 MOST_VIEWED_POSTS_CACHE_TIME = 3600
 # сколько часов назад считать пост недавно просмотренным
 TIME_TO_CHECK_POST_VIEWS = 4
-
-
+# ссылка на наш сервер
+SERVER_URL = 'http://127.0.0.1:8000'
+# ссылка на сервер генератора ссылок
+HASH_GENERATOR_URL = 'http://127.0.0.1:8001/generate/'
 
