@@ -2,5 +2,5 @@
 db.sqlite3
 /secrets.txt
 .env
-/log.log
-*/__pycache__/
+*.log
+__pycache__

@@ -23,7 +23,7 @@
 5. `pip install -r requirements.txt`
 6. `python3.12 manage.py makemigrations`
 7. `python3.12 manage.py migrate`
-8. Зайти в файл settings и добавить в свою операционную систему переменные окружения
+8. Зайти в файл settings и добавить в свою операционную систему переменные окружения с соответствующими значениями 
 9. `python3.12 manage.py runserver`
 10. Развернуть генератор ссылок на порту 8001
 11. Чтобы удалить устаревшие посты `python3.12 manage.py del_outdated_posts`
