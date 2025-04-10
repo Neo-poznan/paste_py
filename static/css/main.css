@@ -86,7 +86,9 @@ header {
 #datePicker {
     background-color: rgb(26, 25, 25);
     margin-top: 1vh;
+    height: 25px;
 }
+
 
 #datePicker:focus {
     outline: none;
@@ -191,6 +193,12 @@ header {
 
 .code-button:hover {
     background-color: rgb(153, 89, 25);
+
+}
+
+.code-button:focus {
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.5);
+    background-color: rgb(112, 67, 23);
 }
 
 .code-run-button {
@@ -211,6 +219,11 @@ header {
     background-color: rgb(153, 89, 25);
 }
 
+.code-run-button:focus {
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.5);
+    background-color: rgb(112, 67, 23);
+}
+
 .terminal-container {
     margin-top: 2vh;
 }
@@ -220,7 +233,7 @@ header {
     background-color: rgb(32, 32, 32);
     border-radius: 7px 7px 0px 0px;
     font-size: 16pt;
-    width: 6vw;
+    width: 120px;
     margin-left: 1vw;
     padding: 3px;
     display: none;
@@ -241,3 +254,49 @@ header {
     display: none;
 
 }
+
+@media screen and (max-width: 450px) {
+    #text-input {
+        width: 80vw;
+        font-size: 12pt;
+
+    }
+    #container {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+    }
+    .message-box {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .terminal-container {
+        width: 100vw;
+
+    }
+    .terminal {
+        width: 80vw;
+        margin: auto;
+    }
+    .terminal-icon-container {
+        width: 80vw;
+        margin: auto;
+    }
+    .date-input-container {
+        width: 80vw;
+        margin: auto;
+    }
+    
+    .btn-container {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .code-button-container {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
