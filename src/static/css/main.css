@@ -1,0 +1,302 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(10, 10, 10);
+    
+}
+
+header {
+    height: 10vh;
+    background-color: rgb(26, 25, 25);
+}
+
+.logo {
+    padding-top: 2vh;
+    margin-left: 2vw;
+    font-size: 34pt;
+}
+
+.logo a {
+    color: rgb(72, 72, 72);
+    text-decoration: none;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50vw;
+}
+
+.message-box {
+    width: 45vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    text-align: center;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+    color: #fff; 
+    margin-left: 3vw;
+    margin-right: 3vw; 
+    background-color: rgb(41, 40, 40);
+    border: 3px solid rgb(72, 72, 72);
+    border-radius: 20px;
+    padding: 1vw;
+    margin-top: 4vh;
+}
+
+
+.close-button-container {
+    text-align: right;
+}
+
+.close-button {
+    background-color: rgb(41, 40, 40);
+    border: none;
+    color: #fff;
+    padding-bottom: 10px;
+}
+
+.close-button i {
+    font-size: 16pt;
+}
+
+.date-input-container {
+    display: flex;
+    justify-content: right;
+}
+
+.date-input-container p {
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+    margin-right: 10px;
+    margin-top: 1vh;
+}
+
+#datePicker {
+    background-color: rgb(26, 25, 25);
+    margin-top: 1vh;
+    height: 25px;
+}
+
+
+#datePicker:focus {
+    outline: none;
+    box-shadow: 0 0 7px rgba(83, 22, 236, 0.6);
+}
+
+#text-input {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16pt;
+    width: 50vw;
+    height: 59vh;
+    background-color: rgb(26, 25, 25);
+    border: 4px solid rgb(72, 72, 72);
+    padding: 14px;
+    resize: vertical;
+    border-radius: 20px;
+    color: rgb(213, 213, 213);
+    margin-top: 1vh;
+}
+
+#text-input:focus {
+    outline: none;
+    box-shadow: 0 0 7px rgba(83, 22, 236, 0.6);
+}
+
+.btn-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-button {
+    width: 110px;
+    height: 40px;
+    background-color: rgb(206, 119, 33);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 2vh;
+}
+
+.submit-button:hover {
+    background-color: rgb(153, 89, 25);
+}
+
+.submit-button:focus {
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.5);
+    background-color: rgb(112, 67, 23);
+}
+
+.loading-container {
+    width: 25vw;
+    margin-left: 29vw;
+    text-align: center;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#loadingBar {
+    width: 100%;
+    height: 7px;
+    border-radius: 3px;
+    background-color: rgb(10, 10, 10);
+}
+
+#progress {
+    margin-top: 5px;
+    height: 7px;
+    border-radius: 3px; 
+}
+
+#loadingText {
+    margin-top: 6px;
+}
+
+#resultText {
+    margin-top: 12px;
+    color: #fff;
+}
+
+#resultLink {
+    color: #fff;
+}
+
+.code-button-container {
+    display: flex;
+    justify-content: right;
+}
+
+.code-button {
+    background-color: rgb(206, 119, 33);
+    font-size: 16pt;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 3vh;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.code-button:hover {
+    background-color: rgb(153, 89, 25);
+
+}
+
+.code-button:focus {
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.5);
+    background-color: rgb(112, 67, 23);
+}
+
+.code-run-button {
+    background-color: rgb(206, 119, 33);
+    font-size: 16pt;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 3vh;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 0.5vw;
+    display: none;
+    
+}
+
+.code-run-button:hover {
+    background-color: rgb(153, 89, 25);
+}
+
+.code-run-button:focus {
+    box-shadow: 0 0 5px rgba(135, 135, 135, 0.5);
+    background-color: rgb(112, 67, 23);
+}
+
+.terminal-container {
+    margin-top: 2vh;
+}
+
+.terminal-icon {
+    color: #fff;
+    background-color: rgb(32, 32, 32);
+    border-radius: 7px 7px 0px 0px;
+    font-size: 16pt;
+    width: 120px;
+    margin-left: 1vw;
+    padding: 3px;
+    display: none;
+}
+
+.terminal {
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border : 3px solid rgb(32, 32, 32);
+    background-color: rgb(10, 10, 10);
+    border-radius: 20px;
+    width: 50.5vw;
+    text-align: left;
+    padding: 10px;
+    white-space: pre-line;
+    display: none;
+
+}
+
+@media screen and (max-width: 450px) {
+    #text-input {
+        width: 80vw;
+        font-size: 12pt;
+
+    }
+    #container {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+    }
+    .message-box {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .terminal-container {
+        width: 100vw;
+
+    }
+    .terminal {
+        width: 80vw;
+        margin: auto;
+    }
+    .terminal-icon-container {
+        width: 80vw;
+        margin: auto;
+    }
+    .date-input-container {
+        width: 80vw;
+        margin: auto;
+    }
+    
+    .btn-container {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .code-button-container {
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+

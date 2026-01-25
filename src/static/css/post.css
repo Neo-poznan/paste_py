@@ -1,0 +1,66 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(10, 10, 10);
+    
+}
+
+header {
+    height: 10vh;
+    background-color: rgb(26, 25, 25);
+}
+
+.logo {
+    padding-top: 2vh;
+    margin-left: 2vw;
+    font-size: 34pt;
+}
+
+.logo a {
+    color: rgb(72, 72, 72);
+    text-decoration: none;
+}
+
+.container {
+    text-align: center;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.post-text {
+    width: 70vw;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16pt;
+    background-color: rgb(26, 25, 25);
+    border: 4px solid rgb(72, 72, 72);
+    padding: 14px;
+    border-radius: 20px;
+    color: rgb(213, 213, 213);
+    margin-top: 6vh;
+    resize: none;
+}
+
+.views {
+    text-align: right;
+    color: rgb(72, 72, 72);
+    font-size: 18pt;
+}
+
+@media screen and (max-width: 450px) {
+    .post-text {
+        width: 80vw;
+    }
+    .container {
+        width: 80vw;
+    }
+    
+    
+}
+

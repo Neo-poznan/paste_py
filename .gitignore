@@ -1,0 +1,12 @@
+.idea
+env/
+db.sqlite3
+/secrets.txt
+*.sqlite3 
+.env
+*.log
+*.pyc  
+*.pyo
+__pycache__
+.env
+.vscode/

@@ -1,0 +1,80 @@
+{% load static %}
+{{ form.media }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новый пост</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'post:new_post' %}">
+            <i class="ri-chat-upload-line"></i>
+            paste.py
+            </a>
+        </div>
+        
+    </header>
+    <div id="container">
+        <div class="message-box" id="messageBox">
+            <div class="close-button-container">
+            <button class="close-button" onclick="closeMessageBox()">skip<i class="ri-close-line"></i></button>
+            </div>
+            <p id="messageText">Привет! Этот сайт поможет тебе поделиться большим блоком текста или своим кодом в каком-нибудь чате!
+                Напиши здесь текст,
+                а потом нажми кнопку чтобы сгенерировать ссылку на твой пост! </p>
+        </div>
+
+        <form name="textform">
+            <script>let csrfCookie = '{{ csrf_token }}'</script>
+            <div class="date-input-container">
+                <p>Пост будет удален через 30 дней! Изменить:</p>
+                <input type='date' id="datePicker" name="del_date">
+            </div>
+            <div class="code-button-container">
+                <div class="code-button">
+                    Python interpreter
+                    <i class="ri-code-s-slash-line"></i>
+                </div>
+                <div class="code-run-button">
+                    Run 
+                    <i class="ri-code-box-line"></i>
+                </div>
+            </div>
+            <textarea name="text" id="text-input"required minlength="60" placeholder="Text..."></textarea>
+            <div class="terminal-container"> 
+                <div class="terminal-icon-container">
+                    <div class="terminal-icon">Терминал<i class="ri-code-box-line"></i></div>
+                </div>       
+                <div class="terminal">
+                    
+                    
+                
+                </div>
+            </div>
+            <br>
+            <div class="btn-container">
+            <button type="submit" class="submit-button" id="submitBtn">Готово</button>
+                <div class="loading-container" style="display: none">
+                    <div id="loadingBar" style="display:none;">
+                        <div id="progress" style="width: 0%; height: 10px; background-color: rgb(83, 22, 236);"></div>
+                        <p id="loadingText">Подождите, пока сгенерируется ссылка...</p>
+                    </div>
+                    <p href="#" id="resultText" style="display:none;"></p>
+                    <a href="#" id="resultLink"></a>
+                </div>
+            </div>
+        </form>
+    </div>
+<script src="{% static 'JS/script.js' %}"></script>
+<script src="{% static 'JS/online_interpreter.js' %}"></script>
+    
+</body>
+</html>
