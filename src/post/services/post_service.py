@@ -11,7 +11,7 @@ from post.models import Posts
 async def create_post(post_content: str, expire_date: str) -> str:
         post_key = await get_hash()
         post_date_validator(expire_date)
-        post_content = remove_unnecessary_line_breaks(post_content)
+        post_content = await remove_unnecessary_line_breaks(post_content)
         post_filename = post_key + '.txt'
         await upload_file_to_s3(post_content, post_filename)
         await Posts.objects.acreate(key=post_key, delete_date=expire_date)
@@ -29,7 +29,7 @@ async def get_post(post_key: str, need_update_views_count: bool) -> Union[str, N
     post_content = await get_post_content(post_key)
     return {'post_content': post_content, 'views': post_metadata.views_count}
 
-def remove_unnecessary_line_breaks(content: str) -> str:
+async def remove_unnecessary_line_breaks(content: str) -> str:
     '''
     Удалим лишние пробелы, табуляции и переносы строк и заменим их
     на один перенос строки. 
@@ -43,18 +43,15 @@ def remove_unnecessary_line_breaks(content: str) -> str:
 async def get_post_content(post_key):
     '''Если текст поста есть в кэше то возвращает его, а если нет,
      то загружает его и кэширует'''
-    redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
-
-    if redis_client.exists(post_key):
-        post_content = redis_client.get(post_key).decode('utf-8')
-    else:  
+    
+    async with redis.asyncio.from_url(f'redis://{REDIS_HOST}:{REDIS_PORT}/0') as redis_client:
+        if await redis_client.exists(post_key):
+            return (await redis_client.get(post_key)).decode('utf-8')
         post_content = await download_file_from_s3(post_key)
         # кэшируем пост
         if post_content:
-            redis_client.set(post_key, post_content)
-            redis_client.expire(post_key, 1800)
-    return post_content
-
-
+            await redis_client.set(post_key, post_content)
+            await redis_client.expire(post_key, 1800) 
+        return post_content
 
     

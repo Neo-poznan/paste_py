@@ -182,6 +182,7 @@ MOST_VIEWED_POSTS_CACHE_TIME = 3600
 TIME_TO_CHECK_POST_VIEWS = 4
 # ссылка на наш сервер
 SERVER_URL = 'http://127.0.0.1:8000'
-# ссылка на сервер генератора ссылок
-HASH_GENERATOR_URL = 'http://127.0.0.1:8080/generate/'
+
+PREPARED_URLS_COUNT = 100
+PREPARED_URLS_FILL_INTERVAL = 10.0 # in seconds
 
