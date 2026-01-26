@@ -1,4 +1,5 @@
 import logging
+import random
 from datetime import datetime
 
 import httpx
@@ -21,4 +22,7 @@ async def get_hash() -> str:
     except httpx.HTTPError as e:
         logger.error(f'[{datetime.now()}] Ошибка при запросе к микросервису для генерации ключа! {e}')
 
-        
+        # В случае ошибки возвращаем случайный ключ
+        letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+        post_key = ''.join(random.choice(letters) for i in range(10))
+        return post_key

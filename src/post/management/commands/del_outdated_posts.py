@@ -11,7 +11,7 @@ class Command(BaseCommand):
         '''
         from post.models import Posts
         from django.utils import timezone
-        from post.services.s3 import delete_file_from_s3
+        from post.infrastructure.s3 import delete_file_from_s3
         outdated_posts = Posts.objects.filter(del_date=timezone.now())
         for post in outdated_posts:
             async_to_sync(delete_file_from_s3)(post.key)

@@ -13,7 +13,7 @@ class Command(BaseCommand):
         
         from config.settings import REDIS_HOST, REDIS_PORT, MOST_VIEWED_POSTS_LIMIT
         from config.settings import MOST_VIEWED_POSTS_CACHE_TIME, TIME_TO_CHECK_POST_VIEWS
-        from post.services.s3 import download_file_from_s3
+        from post.infrastructure.s3 import download_file_from_s3
         redis_client = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
         cursor = connection.cursor()
         cursor.execute(

@@ -6,12 +6,12 @@ from django.http import JsonResponse
 
 from post.models import Posts
 from config.settings import SERVER_URL
-from post.services.s3 import upload_file_to_s3
+from post.infrastructure.s3 import upload_file_to_s3
 from post.validators import post_date_validator
 from post.services.get_url_service import get_hash
-from post.services.code_execute_service import execute_code
+from post.infrastructure.code_executor import execute_code
 from asgiref.sync import sync_to_async
-from post.services.post_content_service import get_and_cache_post_content, remove_unnecessary_line_breaks
+from post.services.post_service import create_post, get_post_content, get_post, remove_unnecessary_line_breaks
 
 
 class CreateNewPostView(View):
@@ -19,34 +19,28 @@ class CreateNewPostView(View):
     
 
     async def get(self, request):  
-        'Когда нужно просто отобразить страницу'
+        'When the user accesses the main page, display the form to create a new post'
         return render(self.request, self.template_name)
     
 
     async def post(self, request):
-        '''Когда пользователь отправляет форму принимаем ее в формате json
-        запрашиваем ключ для нее, сохраняем в БД данные для удаления и просмотров,
-         и сохраняем текст в хранилище s3 потом отправляем ссылку обратно пользователю'''
+        '''
+        When the user submits the form, accept it in JSON format,
+        request a key for it, save deletion and view data in the DB,
+        and save the text in S3 storage, then send the link back to the user
+        '''
         body_unicode = request.body.decode('utf-8')
         form_data = json.loads(body_unicode)
-        # запрос к микросервису для получения ключа
-        post_key = await get_hash()
         post_content = form_data['text']
-        del_date = form_data['del_date']
-        post_date_validator(del_date)
-        post_content = remove_unnecessary_line_breaks(post_content)
-        post_filename = post_key + '.txt'
-        await upload_file_to_s3(post_content, post_filename)
-        await Posts.objects.acreate(key=post_key, delete_date=del_date)
-        # формируем ссылку на пост
-        url = f'{SERVER_URL}/p/{post_key}'
-
-        return JsonResponse({'link': url})
+        expire_date = form_data['expire_date']
+        post_url = await create_post(post_content, expire_date)
+        return JsonResponse({'link': post_url})
     
 
 async def execute_code_view(request):
     '''
-    Представление для выполнения кода в браузере
+    View for executing code sent in the request body.
+    Expects a JSON payload with a 'text' field containing the code to execute.
     '''
     body_unicode = request.body.decode('utf-8')
     form_data = json.loads(body_unicode) 
@@ -57,22 +51,19 @@ async def execute_code_view(request):
 
 
 async def get_post_view(request, post_key):
-    '''Если поста нет, то выводится соответствующее сообщение,
-    если пост есть, то выводится текст поста и обновляется счетчик просмотров'''
-    # если поста нет в БД
-    try:
-        post_metadata = await Posts.objects.aget(key=post_key)
-    except Posts.DoesNotExist:
-        return render(request, 'post/post.html',
-            context={'post_text': 'Поста, который вы ищите не существует или он был удален'})   
-    # если данный пользователь еще не просматривал данный пост, то увеличиваем счетчик просмотров
+    '''
+    If the post does not exist, display an appropriate message,
+    if the post exists, display the post text and update the view count
+    '''
+    # if the user has not yet viewed this post, increase the view count
     is_viewed = await sync_to_async(request.session.get)(post_key)
+    try:
+        context = await get_post(post_key, need_update_views_count=not is_viewed)
+    except Posts.DoesNotExist:
+        return render(request, 'post/post.html', context={'post_content': 'Post not found or deleted!', 'views': 0})
+    except Exception:
+        return render(request, 'post/post.html', context={'post_content': 'Error loading content!', 'views': 0})
     if not is_viewed:
         await sync_to_async(request.session.__setitem__)(post_key, True)
-        post_metadata.views_count += 1
-    # обновляем последнюю дату вызова
-    await post_metadata.asave()
-    # получаем текст поста
-    post_content = await get_and_cache_post_content(post_key)
-    return render(request, 'post/post.html', context={'post_text': post_content, 'views': post_metadata.views_count})
+    return render(request, 'post/post.html', context=context)
 
