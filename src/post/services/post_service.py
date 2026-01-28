@@ -3,7 +3,7 @@ import redis
 
 from config.settings import REDIS_HOST, REDIS_PORT, SERVER_URL
 
-from post.services.get_url_service import get_hash
+from post.infrastructure.url_generator import get_hash
 from post.infrastructure.s3 import download_file_from_s3, upload_file_to_s3
 from post.validators import post_date_validator
 from post.models import Posts

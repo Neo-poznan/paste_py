@@ -5,23 +5,17 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 from post.models import Posts
-from config.settings import SERVER_URL
-from post.infrastructure.s3 import upload_file_to_s3
-from post.validators import post_date_validator
-from post.services.get_url_service import get_hash
 from post.infrastructure.code_executor import execute_code
 from asgiref.sync import sync_to_async
-from post.services.post_service import create_post, get_post_content, get_post, remove_unnecessary_line_breaks
+from post.services.post_service import create_post, get_post, remove_unnecessary_line_breaks
 
 
 class CreateNewPostView(View):
     template_name = 'post/index.html'
     
-
     async def get(self, request):  
         'When the user accesses the main page, display the form to create a new post'
         return render(self.request, self.template_name)
-    
 
     async def post(self, request):
         '''
