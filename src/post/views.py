@@ -39,7 +39,7 @@ async def execute_code_view(request):
     body_unicode = request.body.decode('utf-8')
     form_data = json.loads(body_unicode) 
     code = form_data['text']
-    code = remove_unnecessary_line_breaks(code)
+    code = await remove_unnecessary_line_breaks(code)
     result = await execute_code(code)
     return JsonResponse(result)
 

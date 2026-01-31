@@ -72,7 +72,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -171,9 +171,9 @@ CLIENT_FILES_BUCKET = 'paste-py-clientstorage'
 SITE_ID=1
 
 # настройки для redis
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = os.getenv('REDIS_HOST')
 
-REDIS_PORT = '6379'
+REDIS_PORT = os.getenv('REDIS_PORT')
 
 # настройки кэширования постов
 # сколько наиболее просмотренных постов хранить в кэше

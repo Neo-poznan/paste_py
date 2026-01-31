@@ -1,23 +1,25 @@
 from typing import NoReturn, Union
+
 import redis
+from django.db import connection
 
 from config.settings import REDIS_HOST, REDIS_PORT, SERVER_URL
 
-from post.infrastructure.url_generator import get_hash
+from post.infrastructure.url_generator import get_key
 from post.infrastructure.s3 import download_file_from_s3, upload_file_to_s3
 from post.validators import post_date_validator
 from post.models import Posts
 
 async def create_post(post_content: str, expire_date: str) -> str:
-        post_key = await get_hash()
-        post_date_validator(expire_date)
-        post_content = await remove_unnecessary_line_breaks(post_content)
-        post_filename = post_key + '.txt'
-        await upload_file_to_s3(post_content, post_filename)
-        await Posts.objects.acreate(key=post_key, delete_date=expire_date)
-        # Formatting the URL to send back to the user
-        url = f'{SERVER_URL}/p/{post_key}'
-        return url
+    post_key = await get_key(connection=connection, redis_host=REDIS_HOST, redis_port=REDIS_PORT)
+    post_date_validator(expire_date)
+    post_content = await remove_unnecessary_line_breaks(post_content)
+    post_filename = post_key + '.txt'
+    await upload_file_to_s3(post_content, post_filename)
+    await Posts.objects.acreate(key=post_key, delete_date=expire_date)
+    # Formatting the URL to send back to the user
+    url = f'{SERVER_URL}/p/{post_key}'
+    return url
 
 async def get_post(post_key: str, need_update_views_count: bool) -> Union[str, NoReturn]:
     post_metadata = await Posts.objects.aget(key=post_key)

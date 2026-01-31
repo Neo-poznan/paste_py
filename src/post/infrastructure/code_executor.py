@@ -1,11 +1,12 @@
 import aiodocker
+import random
 
 async def execute_code(code: str) -> dict:
     '''Выполняет код переданный в строке и возвращаем stdout и stderr'''
     docker = aiodocker.Docker(url='unix:///var/run/docker.sock')
     try:
         container = await docker.containers.create_or_replace(
-            name='user_code_executor',
+            name=await get_random_container_name(),
             config={
                 'Image': 'python:3.14.2-slim',
                 'Cmd': ['python', '-c', code],
@@ -29,5 +30,10 @@ async def execute_code(code: str) -> dict:
     finally:
         await container.delete(force=True)
         await docker.close()
+
+
+async def get_random_container_name():
+    chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    return 'user_code_executor_container_' + ''.join(random.choice(chars) for _ in range(14))
 
 
