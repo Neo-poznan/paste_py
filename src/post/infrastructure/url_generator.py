@@ -2,6 +2,8 @@ import logging
 import base64
 import hashlib
 
+from asgiref.sync import sync_to_async
+
 import redis
 
 logger = logging.getLogger('django.request')
@@ -34,7 +36,7 @@ async def get_key(connection, redis_host: str, redis_port: str) -> str:
     redis_client = await redis.asyncio.from_url(f'redis://{redis_host}:{redis_port}/0')
     post_key = await redis_client.lpop('prepared_urls')
     if post_key is None:
-        post_key = generate_unique_key(connection=connection)
+        post_key = await sync_to_async(generate_unique_key)(connection=connection)
         logger.warning('No prepared keys available, generated a new key: %s', post_key)
     else:
         post_key = post_key.decode('utf-8')

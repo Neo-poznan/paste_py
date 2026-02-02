@@ -7,9 +7,8 @@ from config.settings import AWS_ACCESS_KEY_ID,  AWS_SECRET_ACCESS_KEY, ENDPOINT_
 logger = logging.getLogger('django.request')
 
 
-async def upload_file_to_s3(content:str, key: str) -> None:
-    session = aioboto3.Session()
-    async with session.client(
+async def upload_file_to_s3(s3_session: aioboto3.Session, content:str, key: str) -> None:
+    async with s3_session.client(
         's3', endpoint_url=ENDPOINT_URL,
         aws_access_key_id=AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
@@ -21,10 +20,9 @@ async def upload_file_to_s3(content:str, key: str) -> None:
             raise PermissionError('Error accessing storage')
 
 
-async def download_file_from_s3(key: str) -> str:
+async def download_file_from_s3(s3_session: aioboto3.Session, key: str) -> str:
     key += '.txt'
-    session = aioboto3.Session()
-    async with session.client(
+    async with s3_session.client(
         's3', endpoint_url=ENDPOINT_URL,
         aws_access_key_id=AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY
@@ -42,9 +40,8 @@ async def download_file_from_s3(key: str) -> str:
             raise PermissionError('Error accessing storage')
 
 
-async def delete_file_from_s3(key: str) -> None:
-    session = aioboto3.Session()
-    async with session.client(
+async def delete_file_from_s3(s3_session: aioboto3.Session, key: str) -> None:
+    async with s3_session.client(
         's3', endpoint_url=ENDPOINT_URL,
         aws_access_key_id=AWS_ACCESS_KEY_ID,
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY

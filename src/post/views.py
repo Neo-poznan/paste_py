@@ -3,6 +3,7 @@ import json
 from django.views.generic import View
 from django.shortcuts import render
 from django.http import JsonResponse
+import aioboto3
 
 from post.models import Posts
 from post.infrastructure.code_executor import execute_code
@@ -27,7 +28,7 @@ class CreateNewPostView(View):
         form_data = json.loads(body_unicode)
         post_content = form_data['text']
         expire_date = form_data['expire_date']
-        post_url = await create_post(post_content, expire_date)
+        post_url = await create_post(aioboto3.Session(), post_content, expire_date)
         return JsonResponse({'link': post_url})
     
 
@@ -52,7 +53,7 @@ async def get_post_view(request, post_key):
     # if the user has not yet viewed this post, increase the view count
     is_viewed = await sync_to_async(request.session.get)(post_key)
     try:
-        context = await get_post(post_key, need_update_views_count=not is_viewed)
+        context = await get_post(aioboto3.Session(), post_key, need_update_views_count=not is_viewed)
     except Posts.DoesNotExist:
         return render(request, 'post/post.html', context={'post_content': 'Post not found or deleted!', 'views': 0})
     except Exception:
