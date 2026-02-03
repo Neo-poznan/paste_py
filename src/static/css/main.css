@@ -9,13 +9,16 @@ body {
 }
 
 header {
-    height: 10vh;
+    display: flex;
+    height: 100px;
     background-color: rgb(26, 25, 25);
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 5px rgb(62, 59, 59) solid;
 }
 
 .logo {
-    padding-top: 2vh;
-    margin-left: 2vw;
+    margin-left: 40px;
     font-size: 34pt;
 }
 
@@ -30,11 +33,11 @@ header {
 #container {
     margin-left: auto;
     margin-right: auto;
-    width: 50vw;
+    width: 700px;
 }
 
 .message-box {
-    width: 45vw;
+    width: 680px;
     margin-left: auto;
     margin-right: auto;
     display: table;
@@ -43,12 +46,10 @@ header {
     font-weight: 400;
     font-style: normal; 
     color: #fff; 
-    margin-left: 3vw;
-    margin-right: 3vw; 
     background-color: rgb(41, 40, 40);
     border: 3px solid rgb(72, 72, 72);
     border-radius: 20px;
-    padding: 1vw;
+    padding: 7px;
     margin-top: 4vh;
 }
 
@@ -76,16 +77,20 @@ header {
 .date-input-container p {
     color: #fff;
     font-family: "Ubuntu", sans-serif;
-    font-weight: 400;
     font-style: normal; 
     margin-right: 10px;
     margin-top: 1vh;
+    font-size: 12pt;
 }
 
 #datePicker {
     background-color: rgb(26, 25, 25);
     margin-top: 1vh;
     height: 25px;
+    border-radius: 7px;
+    padding: 3px;
+    color: white;
+
 }
 
 
@@ -99,7 +104,7 @@ header {
     font-weight: 400;
     font-style: normal;
     font-size: 16pt;
-    width: 50vw;
+    width: 95%;
     height: 59vh;
     background-color: rgb(26, 25, 25);
     border: 4px solid rgb(72, 72, 72);
@@ -118,6 +123,7 @@ header {
 .btn-container{
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .submit-button {
@@ -140,13 +146,14 @@ header {
 }
 
 .loading-container {
-    width: 25vw;
+    width: 400px;
     margin-left: 29vw;
     text-align: center;
     color: #fff;
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
     font-style: normal;
+    margin-bottom: 30px;
 }
 
 #loadingBar {
@@ -169,6 +176,8 @@ header {
 #resultText {
     margin-top: 12px;
     color: #fff;
+    font-size: 10pt;
+    text-align: center;
 }
 
 #resultLink {
@@ -187,8 +196,10 @@ header {
     border-radius: 7px;
     text-align: center;
     margin-top: 3vh;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .code-button:hover {
@@ -208,10 +219,13 @@ header {
     border-radius: 7px;
     text-align: center;
     margin-top: 3vh;
-    padding-left: 2px;
-    padding-right: 2px;
     margin-left: 0.5vw;
     display: none;
+    padding: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
     
 }
 
@@ -233,10 +247,10 @@ header {
     background-color: rgb(32, 32, 32);
     border-radius: 7px 7px 0px 0px;
     font-size: 16pt;
-    width: 120px;
-    margin-left: 1vw;
-    padding: 3px;
+    margin-left: 25px;
+    padding: 4px;
     display: none;
+    width: 120px;
 }
 
 .terminal {
@@ -247,7 +261,7 @@ header {
     border : 3px solid rgb(32, 32, 32);
     background-color: rgb(10, 10, 10);
     border-radius: 20px;
-    width: 50.5vw;
+    width: 96%;
     text-align: left;
     padding: 10px;
     white-space: pre-line;
@@ -257,46 +271,69 @@ header {
 
 @media screen and (max-width: 450px) {
     #text-input {
-        width: 80vw;
+        width: 95%;
         font-size: 12pt;
 
     }
-    #container {
-        width: 100vw;
-        margin: 0;
-        padding: 0;
+
+    .loading-container {
+        width: 200px;
     }
-    .message-box {
-        width: 80vw;
+    
+    #container {
+        width: 300px;
         margin-left: auto;
         margin-right: auto;
     }
+    .message-box {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 10pt;
+    }
     .terminal-container {
-        width: 100vw;
+        width: 95%;
 
     }
     .terminal {
-        width: 80vw;
+        width: 95%;
         margin: auto;
     }
     .terminal-icon-container {
-        width: 80vw;
+        width: 95%;
         margin: auto;
     }
+
+    .terminal-icon {
+        font-size: 10pt;
+        width: 105px;
+    }
     .date-input-container {
-        width: 80vw;
+        width: 95%;
         margin: auto;
+    }
+
+    .date-input-container p {
+        font-size: 9pt;
     }
     
     .btn-container {
-        width: 80vw;
+        width: 95%;
         margin-left: auto;
         margin-right: auto;
     }
     .code-button-container {
-        width: 80vw;
+        width: 95%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .code-button {
+        font-size: 12pt;
+    }
+
+    .code-run-button {
+        font-size: 12pt;
     }
 }
 

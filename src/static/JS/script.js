@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Предотвращаем стандартную отправку формы
 
         submitBtn.style.display = 'none'; // Скрываем кнопку
+        resultText.textContent = ''; 
+        resultText.style.display = 'none'; // Скрываем текст результата
         loadingContainer.style.display = 'block'; // Показываем контейнер загрузки
         loadingBar.style.display = 'block'; // Показываем полосу загрузки
 
@@ -100,13 +102,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
         })
         .catch(error => {
-            loadingText.textContent = 'Ошибка загрузки, попробуйте ещё раз.';
-            loadingContainer.style.display = 'none';
-            loadingBar.style.display = 'none';
-            resultText.style.display = 'block';
-            resultText.textContent = 'Ошибка загрузки, попробуйте ещё раз.';
-            console.error('Ошибка:', error);
-            submitBtn.style.display = 'block';
+            setTimeout(() => {
+                loadingContainer.style.display = 'block';
+                loadingBar.style.display = 'none';
+                resultText.style.display = 'block';
+                resultText.textContent = 'Ошибка загрузки, попробуйте ещё раз.';
+                console.error('Ошибка:', error);
+                submitBtn.style.display = 'block';
+            }, 500);
         });
     });
 });
